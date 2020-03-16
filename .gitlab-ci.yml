@@ -51,7 +51,9 @@ no_lttng:
 coverage:
   image: $BASE_IMAGE_ID:$DISTRO
   script:
+    - git clone https://github.com/christophebedard/ament_cmake.git -b cmake-packages-pytest-with-coverage-option
     - colcon build --symlink-install --event-handlers console_cohesion+ --packages-up-to $PACKAGES_LIST --cmake-args --no-warn-unused-cli -DCMAKE_BUILD_TYPE=Debug -DINSTALL_EXAMPLES=OFF -DSECURITY=ON --ament-cmake-args -DCMAKE_CXX_FLAGS="${CMAKE_CXX_FLAGS} --coverage" -DCMAKE_C_FLAGS="${CMAKE_C_FLAGS} --coverage"
+    - export AMENT_CMAKE_TEST_PYTEST_WITH_COVERAGE=""
     - colcon test --event-handlers console_cohesion+ --packages-select $PACKAGES_LIST --ctest-pytest-with-coverage --pytest-with-coverage --executor sequential
     - colcon test-result --all
   after_script:
