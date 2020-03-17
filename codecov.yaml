@@ -32,23 +32,23 @@ coverage:
 flags:
   ros2trace:
     paths:
-      - ros2trace/ros2trace
+      - ros2trace/ros2trace/
   tracetools:
     paths:
-      - tracetools
+      - tracetools/
   tracetools_launch:
     paths:
-      - tracetools_launch/tracetools_launch
+      - tracetools_launch/tracetools_launch/
   tracetools_read:
     paths:
-      - tracetools_read/tracetools_read
+      - tracetools_read/tracetools_read/
   tracetools_test:
     paths:
-      - tracetools_test/src
-      - tracetools_test/tracetools_test
+      - tracetools_test/src/
+      - tracetools_test/tracetools_test/
   tracetools_trace:
     paths:
-      - tracetools_trace/tracetools_trace
+      - tracetools_trace/tracetools_trace/
 
 parsers:
   gcov:
