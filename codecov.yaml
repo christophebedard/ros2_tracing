@@ -24,8 +24,8 @@ comment:
   require_changes: no
 
 ignore:
-  - ros2trace/test/
-  - tracetools_launch/test/
-  - tracetools_read/test/
-  - tracetools_test/test/
-  - tracetools_trace/test/
+  - ros2trace/test
+  - tracetools_launch/test
+  - tracetools_read/test
+  - tracetools_test/test
+  - tracetools_trace/test
