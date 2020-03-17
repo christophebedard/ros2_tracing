@@ -57,5 +57,5 @@ coverage:
     - colcon test --event-handlers console_cohesion+ --packages-select $PACKAGES_LIST --ctest-pytest-with-coverage --pytest-with-coverage --executor sequential
     - colcon test-result --all
   after_script:
-    - bash <(curl -s https://codecov.io/bash)
+    - bash <(curl -s https://codecov.io/bash) -X gcovout
   <<: *global_artifacts
