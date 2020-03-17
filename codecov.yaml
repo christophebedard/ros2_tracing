@@ -9,46 +9,6 @@ coverage:
     project:
       target: 85%
       threshold: 5%
-    ros2trace:
-      flags:
-        - ros2trace
-    tracetools:
-      flags:
-        - tracetools
-      target: 95%
-    tracetools_launch:
-      flags:
-        - tracetools_launch
-    tracetools_read:
-      flags:
-        - tracetools_read
-    tracetools_test:
-      flags:
-        - tracetools_test
-    tracetools_trace:
-      flags:
-        - tracetools_trace
-
-flags:
-  ros2trace:
-    paths:
-      - ros2trace/ros2trace/
-  tracetools:
-    paths:
-      - tracetools/
-  tracetools_launch:
-    paths:
-      - tracetools_launch/tracetools_launch/
-  tracetools_read:
-    paths:
-      - tracetools_read/tracetools_read/
-  tracetools_test:
-    paths:
-      - tracetools_test/src/
-      - tracetools_test/tracetools_test/
-  tracetools_trace:
-    paths:
-      - tracetools_trace/tracetools_trace/
 
 parsers:
   gcov:
@@ -62,3 +22,10 @@ comment:
   layout: "reach,diff,flags,tree"
   behavior: default
   require_changes: no
+
+ignore:
+  - ros2trace/test/
+  - tracetools_launch/test/
+  - tracetools_read/test/
+  - tracetools_test/test/
+  - tracetools_trace/test/
