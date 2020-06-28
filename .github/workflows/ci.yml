@@ -1,0 +1,45 @@
+name: Test
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    # - uses: actions/checkout@v2
+    # - uses: ros-tooling/setup-ros@0.0.24
+    - uses: christophebedard/setup-ros@install-colcon-coveragepy-result
+    - name: Install LTTng
+      run: |
+        sudo apt-add-repository -y ppa:lttng/ppa
+        sudo apt-get update
+        sudo apt-get install -q -y lttng-tools liblttng-ust-dev python3-lttng python3-babeltrace python3-pandas
+    # - uses: ros-tooling/action-ros-ci@0.0.17
+    - uses: christophebedard/action-ros-ci@238-collect-all-python-coverage-data
+      with:
+        package-name: ros2trace tracetools tracetools_launch tracetools_read tracetools_test tracetools_trace
+        colcon-mixin-name: coverage-gcc coverage-pytest
+    - run: |
+        sudo dpkg -l | grep pytest-cov
+        dpkg -l | grep pytest-cov
+        sudo pip3 list | grep pytest-cov
+        pip3 list | grep pytest-cov
+        sudo python3 -m pytest --version
+        python3 -m pytest --version
+        pwd
+        ls -al
+        sudo python3 -m pytest --version > out 2>error
+        cat out
+        echo "sep"
+        cat error
+        cp ros_ws/src/ros2_tracing/codecov.yml .
+    - uses: codecov/codecov-action@v1.0.7
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        file: ros_ws/lcov/total_coverage.info
+    - uses: codecov/codecov-action@v1.0.7
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        file: ros_ws/coveragepy/.coverage
